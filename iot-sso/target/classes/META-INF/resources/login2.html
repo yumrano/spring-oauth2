@@ -1,0 +1,31 @@
+
+<!-- saved from url=(0027)http://localhost:9999/login -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登陆</title>
+</head>
+<body onload="document.f.username.focus();">
+	<h3>用户登陆</h3>
+	<form name="f" action="http://183.233.189.90:8080/sso/login" method="POST">
+		<table>
+			<tbody>
+				<tr>
+					<td>User:</td>
+					<td><input type="text" name="username" value=""></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input name="submit" type="submit"
+						value="Login"></td>
+				</tr>
+				<!-- <input name="_csrf" type="hidden"
+					value="2995554e-2a01-4305-89e8-145d1a44f688"> -->
+			</tbody>
+		</table>
+	</form>
+</body>
+</html>

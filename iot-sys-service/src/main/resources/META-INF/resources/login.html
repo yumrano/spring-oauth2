@@ -1,0 +1,66 @@
+
+<!-- saved from url=(0027)http://localhost:9999/login -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript"
+	src="./plugins/jquery/jquery-1.10.2.min.js"></script>
+<title>用户登陆</title>
+</head>
+<body onload="">
+	<h3>用户登陆</h3>
+		<table>
+			<tbody>
+				<tr>
+					<td>User:</td>
+					<td><input type="text" id="username" name="username" value=""></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input id="passwd" type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input name="submit" type="submit"
+						value="Login" id="submit"></td>
+				</tr>
+				<!-- <input name="_csrf" type="hidden"
+					value="2995554e-2a01-4305-89e8-145d1a44f688"> -->
+			</tbody>
+		</table>
+</body>
+<script type="text/javascript">
+function getQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null)
+		return unescape(r[2]);
+	return null;
+}
+
+	$("#submit").click(function() {
+		$.ajax({
+			url : "http://183.233.189.90:8080/sso/oauth/token",
+			type : "POST",
+			dataType : "json",
+			data : {
+				grant_type : "password",
+				client_id : "sys_ypkj",
+				client_secret : "ypkj888...",
+				username: $("#username").val(),
+				password: $("#passwd").val(),
+				scope: "select"
+			},
+			success : function(data) {
+				console.log(data);
+				access_token = data.access_token;
+				document.cookie="access_token="+access_token;
+				var redirect_uri = getQueryString("redirect_uri");
+				window.location.href = redirect_uri; 
+			},
+			error : function() {
+				console.log("申请token error");
+			}
+		});
+	});
+</script>
+</html>
