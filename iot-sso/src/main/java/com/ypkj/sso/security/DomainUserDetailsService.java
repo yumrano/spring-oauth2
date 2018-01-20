@@ -23,7 +23,7 @@ public class DomainUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		String lowcaseUsername = username.toLowerCase();
-		SysUser realUser = sysUserMapper.selectUserAuthoirty("admin");
+		SysUser realUser = sysUserMapper.selectUserAuthoirty(username);
 
 		// 上面避免了我们类似 Java 8 之前的做法
 		if (realUser != null) {

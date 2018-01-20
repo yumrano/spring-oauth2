@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ypkj.sys.dao.mapper.SysUserMapper" >
-  <resultMap id="BaseResultMap" type="com.ypkj.sys.dao.entity.SysUser" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="account" property="account" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="org_id" property="orgId" jdbcType="INTEGER" />
-    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
-    <result column="mobile_tel" property="mobileTel" jdbcType="VARCHAR" />
-    <result column="mail" property="mail" jdbcType="VARCHAR" />
-    <result column="state" property="state" jdbcType="INTEGER" />
-    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
-    <result column="create_id" property="createId" jdbcType="INTEGER" />
-    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-    <result column="update_id" property="updateId" jdbcType="INTEGER" />
-    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+<mapper namespace="com.ypkj.sso.dao.mapper.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ypkj.sso.dao.entity.SysUser" >
+    <id column="user_id" property="id" jdbcType="INTEGER" />
+    <result column="user_account" property="account" jdbcType="VARCHAR" />
+    <result column="user_password" property="password" jdbcType="VARCHAR" />
+    <result column="user_name" property="name" jdbcType="VARCHAR" />
+    <result column="user_org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="user_telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="user_mobile_tel" property="mobileTel" jdbcType="VARCHAR" />
+    <result column="user_mail" property="mail" jdbcType="VARCHAR" />
+    <result column="user_state" property="state" jdbcType="INTEGER" />
+    <result column="user_remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="user_create_id" property="createId" jdbcType="INTEGER" />
+    <result column="user_create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="user_update_id" property="updateId" jdbcType="INTEGER" />
+    <result column="user_update_date" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, account, password, name, org_id, telephone, mobile_tel, mail, state, remarks, 
@@ -31,7 +31,7 @@
     delete from sys_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ypkj.sys.dao.entity.SysUser" >
+  <insert id="insert" parameterType="com.ypkj.sso.dao.entity.SysUser" >
     insert into sys_user (id, account, password, 
       name, org_id, telephone, 
       mobile_tel, mail, state, 
@@ -43,7 +43,7 @@
       #{remarks,jdbcType=VARCHAR}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateId,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ypkj.sys.dao.entity.SysUser" >
+  <insert id="insertSelective" parameterType="com.ypkj.sso.dao.entity.SysUser" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -134,7 +134,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ypkj.sys.dao.entity.SysUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ypkj.sso.dao.entity.SysUser" >
     update sys_user
     <set >
       <if test="account != null" >
@@ -179,7 +179,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ypkj.sys.dao.entity.SysUser" >
+  <update id="updateByPrimaryKey" parameterType="com.ypkj.sso.dao.entity.SysUser" >
     update sys_user
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -197,30 +197,59 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
-  <resultMap id="userauthoirtymap" type="com.ypkj.sys.dao.entity.SysUser" extends="BaseResultMap">
-    <collection property="sysAuthoritys">  
+  <resultMap id="userauthoirtymap" type="com.ypkj.sso.dao.entity.SysUser" extends="BaseResultMap">
+    <collection property="sysAuthoritys" ofType="com.ypkj.sso.dao.entity.SysAuthority">  
             <id column="authority_id" property="id" jdbcType="INTEGER" />
-		    <result column="name" property="name" jdbcType="VARCHAR" />
-		    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
-		    <result column="code" property="code" jdbcType="VARCHAR" />
-		    <result column="type" property="type" jdbcType="INTEGER" />
-		    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-		    <result column="url" property="url" jdbcType="VARCHAR" />
-		    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
-		    <result column="create_id" property="createId" jdbcType="INTEGER" />
-		    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-		    <result column="update_id" property="updateId" jdbcType="INTEGER" />
-		    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />  
+		    <result column="authority_name" property="name" jdbcType="VARCHAR" />
+		    <result column="authority_menu_name" property="menuName" jdbcType="VARCHAR" />
+		    <result column="authority_code" property="code" jdbcType="VARCHAR" />
+		    <result column="authority_type" property="type" jdbcType="INTEGER" />
+		    <result column="authority_parent_id" property="parentId" jdbcType="INTEGER" />
+		    <result column="authority_url" property="url" jdbcType="VARCHAR" />
+		    <result column="authority_order_num" property="orderNum" jdbcType="INTEGER" />
+		    <result column="authority_create_id" property="createId" jdbcType="INTEGER" />
+		    <result column="authority_create_date" property="createDate" jdbcType="TIMESTAMP" />
+		    <result column="authority_update_id" property="updateId" jdbcType="INTEGER" />
+		    <result column="authority_update_date" property="updateDate" jdbcType="TIMESTAMP" />  
         </collection> 
   </resultMap>
   
   <select id="selectUserAuthoirty" resultMap="userauthoirtymap"
 		parameterType="string">
-		SELECT u.*,a.*,a.id as authority_id FROM sys_user u LEFT JOIN sys_user_role ur ON u.id =
-		ur.user_id
-		LEFT JOIN sys_role r ON ur.role_id = u.id
-		LEFT JOIN sys_role_authority ra ON r.id = ra.role_id
-		LEFT JOIN sys_authority a ON ra.authority_id = a.id
-		WHERE u.account = #{account}
+		SELECT
+			u.id AS user_id,
+			u.account AS user_account,
+			u.`PASSWORD` AS user_PASSWORD,
+			u.`NAME` AS user_NAME,
+			u.org_id AS user_org_id,
+			u.telephone AS user_telephone,
+			u.mobile_tel AS user_mobile_tel,
+			u.mail AS user_mail,
+			u.state AS user_state,
+			u.remarks AS user_remarks,
+			u.create_id AS user_create_id,
+			u.create_date AS user_create_date,
+			u.update_id AS user_update_id,
+			u.update_date AS user_update_date,
+			a.id AS authority_id,
+			a.`NAME` AS authority_name,
+			a.menu_name AS authority_menu_name,
+			a.`code` AS authority_code,
+			a.type AS authority_typetype,
+			a.parent_id AS authority_parent_id,
+			a.url AS authority_url,
+			a.order_num AS authority_order_num,
+			a.create_id AS authority_create_id,
+			a.create_date AS authority_create_date,
+			a.update_id AS authority_update_id,
+			a.update_date AS authority_update_date
+		FROM
+			sys_user u
+		INNER JOIN sys_user_role ur ON u.id = ur.user_id
+		INNER JOIN sys_role r ON ur.role_id = u.id
+		INNER JOIN sys_role_authority ra ON r.id = ra.role_id
+		INNER JOIN sys_authority a ON ra.authority_id = a.id
+		WHERE
+			u.account = #{account}
 	</select>
 </mapper>
