@@ -18,6 +18,7 @@ feign.hystirx.enable: true
 security:
   oauth2:
     client:
+      id: iot-sys-service
       access-token-uri: http://localhost:8080/sso/oauth/token
       user-authorization-uri: http://localhost:8080/sso/oauth/authorize
       client-id: sys_ypkj

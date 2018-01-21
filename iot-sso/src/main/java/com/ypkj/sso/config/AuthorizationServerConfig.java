@@ -37,7 +37,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 				// 若无，refresh_token会有UserDetailsService is required错误
 				.userDetailsService(userDetailsService)//
 				.tokenStore(tokenStore());
-		endpoints.tokenServices(defaultTokenServices());
+//		endpoints.tokenServices(defaultTokenServices());
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		clients.inMemory()//
 				.withClient("ypkj_test").scopes("select").secret("ypkj_test123").authorizedGrantTypes("authorization_code", "refresh_token").autoApprove(true)//
 //				.and().withClient("webapp").scopes("select").authorizedGrantTypes("implicit")//
-				.and().withClient("sys_ypkj").scopes("select").secret("ypkj888...").authorizedGrantTypes("password", "refresh_token");
+				.and().withClient("sys_ypkj").scopes("select").secret("ypkj888...").authorizedGrantTypes("password", "refresh_token").autoApprove(true);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		tokenServices.setTokenStore(tokenStore());
 		tokenServices.setSupportRefreshToken(true);
 		// tokenServices.setClientDetailsService(clientDetails());
-		tokenServices.setAccessTokenValiditySeconds(60 * 60 * 12); // token有效期自定义设置，默认12小时
+		tokenServices.setAccessTokenValiditySeconds(60 * 60 ); // token有效期自定义设置，默认12小时
 		tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);// 默认30天，这里修改
 		return tokenServices;
 	}

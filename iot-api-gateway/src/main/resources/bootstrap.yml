@@ -27,8 +27,8 @@ security:
     client:
       access-token-uri: http://localhost:8080/sso/oauth/token
       user-authorization-uri: http://localhost:8080/sso/oauth/authorize
-      client-id: android
-      client-secret: android
+      client-id: sys_ypkj
+      client-secret: ypkj888...
     resource:
       user-info-uri: http://localhost:8080/sso/user
       prefer-token-info: false
