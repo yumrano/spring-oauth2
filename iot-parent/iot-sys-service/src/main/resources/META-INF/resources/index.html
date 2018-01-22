@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"
+	src="./plugins/jquery/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+	<div>
+		<button id="login">登录</button>
+		<div>
+			access_token: <span id="access_token"></span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$("#login")
+			.click(
+					function() {
+						var redirect_uri = window.location.href;
+						window.location.href = "http://183.233.189.90:8080/sys/login.html?redirect_uri="
+								+ redirect_uri;
+					});
+
+	function getCookie(name) {
+		var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+		if (arr = document.cookie.match(reg))
+			return unescape(arr[2]);
+		else
+			return null;
+	}
+	
+	$("#access_token").html(getCookie("access_token"));
+
+	/*	function getQueryString(name) {
+	 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	 var r = window.location.search.substr(1).match(reg);
+	 if (r != null)
+	 return unescape(r[2]);
+	 return null;
+	 }
+	 var code = getQueryString("code");
+	 var access_token = "";
+	 //3
+	 if(code){
+	 $.ajax({
+	 url : "http://183.233.189.90:8080/usso/oauth/token",
+	 type: "POST",
+	 dataType: "json",
+	 data : {
+	 grant_type: "authorization_code",
+	 client_id: "android",
+	 client_secret: "android",
+	 redirect_uri: "http://183.233.189.90:8080/sys/index.html",
+	 code: code
+	 },
+	 success : function(data) {
+	 console.log(data);
+	 access_token = data.access_token;
+	 },
+	 error : function() {
+	 console.log("申请token error");
+	 }
+	 });
+	 }
+	 //1
+	 $("#demo").click(function() {
+	 console.log("access_token=" +access_token);
+	 $.ajax({
+	 url : "http://183.233.189.90:8080/sys/demo",
+	 type: "GET",
+	 data : {
+	 access_token : access_token
+	 },
+	 success : function(data) {
+	 console.log("success");
+	 $("#demo-value").html(data);
+	 },
+	 error : function() {
+	 console.log("error");
+	 //2
+	 window.location.href = "http://183.233.189.90:8080/usso/oauth/authorize?response_type=code&client_id=android&redirect_uri=http://183.233.189.90:8080/sys/index.html";
+	 }
+	 });
+	 }); */
+</script>
+</html>
